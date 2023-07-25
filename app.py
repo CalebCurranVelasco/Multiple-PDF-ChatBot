@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import openai
 from dotenv import find_dotenv, load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
@@ -11,6 +12,7 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 
 load_dotenv(find_dotenv())
+openai.api_key = st.secrets["api_secret"]
 
 #gets the text from the pdfs
 def get_pdf_text(pdf_docs):
