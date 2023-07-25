@@ -12,7 +12,7 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 
 load_dotenv(find_dotenv())
-openai.api_key = st.secrets["apiSecret"]
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 #gets the text from the pdfs
 def get_pdf_text(pdf_docs):
