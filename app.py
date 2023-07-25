@@ -12,7 +12,8 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 
 load_dotenv(find_dotenv())
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+# OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+
 
 #gets the text from the pdfs
 def get_pdf_text(pdf_docs):
@@ -70,6 +71,12 @@ def main():
 
     st.set_page_config(page_title="Multiple PDFs ChatBot", page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
+    openai_api_key = st.session_state.get("OPENAI_API_KEY")
+    if not openai_api_key:
+        st.warning(
+            "Enter your OpenAI API key in the sidebar. You can get a key at"
+            " https://platform.openai.com/account/api-keys."
+        )
 
     if "conversation" not in st.session_state: # initialize it here when using session state, can use this variable globally now and does not ever reset
         st.session_state.converstaion = None
@@ -86,6 +93,24 @@ def main():
     
     # this creates the sidebar to upload the pdf docs to
     with st.sidebar:
+        st.markdown(
+            "## How to use\n"
+            "1. Enter your [OpenAI API key](https://platform.openai.com/account/api-keys) below🔑\n"  # noqa: E501
+            "2. Upload a pdf, docx, or txt file📄\n"
+            "3. Ask a question about the document💬\n"
+        )
+        api_key_input = st.text_input(
+            "OpenAI API Key",
+            type="password",
+            placeholder="Paste your OpenAI API key here (sk-...)",
+            help="You can get your API key from https://platform.openai.com/account/api-keys.",  # noqa: E501
+            value=os.environ.get("OPENAI_API_KEY", None)
+            or st.session_state.get("OPENAI_API_KEY", ""),
+        )
+
+        st.session_state["OPENAI_API_KEY"] = api_key_input
+
+        st.markdown("---")
         st.subheader("Your documents")
         pdf_docs = st.file_uploader("Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
         if st.button("Process"):
