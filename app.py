@@ -67,7 +67,7 @@ def handle_userinput(user_question):
 def main():
     load_dotenv(find_dotenv())
 
-    st.set_page_config(page_title="ultiple PDFs ChatBot", page_icon=":books:")
+    st.set_page_config(page_title="Multiple PDFs ChatBot", page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
 
     if "conversation" not in st.session_state: # initialize it here when using session state, can use this variable globally now and does not ever reset
