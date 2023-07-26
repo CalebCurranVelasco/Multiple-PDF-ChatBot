@@ -43,7 +43,8 @@ def get_vectorstore(text_chunks, openai_api_key):
 
 
 #creates the converstaion chain with langchain
-def get_conversation_chain(vectorstore):
+def get_conversation_chain(vectorstore, openai_api_key):
+    openai.api_key = openai_api_key
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
@@ -72,7 +73,7 @@ def main():
 
     st.set_page_config(page_title="Multiple PDFs ChatBot", page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
-    openai_api_key = st.session_state.get("OPENAI_API_KEY")
+    # openai_api_key = st.session_state.get("OPENAI_API_KEY")
     
     if not openai_api_key:
         st.warning(
@@ -109,7 +110,7 @@ def main():
             value=st.session_state.get("OPENAI_API_KEY", ""),
         )
 
-        st.session_state["OPENAI_API_KEY"] = api_key_input
+        # st.session_state["OPENAI_API_KEY"] = api_key_input
 
         st.markdown("---")
         st.subheader("Your documents")
@@ -126,7 +127,7 @@ def main():
                 vectorstore = get_vectorstore(text_chunks, st.session_state["OPENAI_API_KEY"])
 
                 # create conversation chain
-                st.session_state.conversation = get_conversation_chain(vectorstore)  # add session state so that this variable is never reinitialized when user pushes button or something like that, streamlit does that sometimes
+                st.session_state.conversation = get_conversation_chain(vectorstore, st.session_state["OPENAI_API_KEY"])  # add session state so that this variable is never reinitialized when user pushes button or something like that, streamlit does that sometimes
                 
 
 
