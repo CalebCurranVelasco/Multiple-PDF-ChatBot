@@ -69,7 +69,7 @@ def main():
     load_dotenv(find_dotenv())
     
 
-    st.set_page_config(page_title="Multiple PDFs ChatBot", page_icon=":books:")
+    st.set_page_config(page_title="Multiple PDFs ChatBot", page_icon=":scroll:")
     st.write(css, unsafe_allow_html=True)
     # openai_api_key = st.session_state.get("OPENAI_API_KEY")
     
@@ -84,7 +84,7 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Multiple PDFs ChatBot :books:")
+    st.header(":sun_with_face: Chat With Multiple PDFs :scroll:")
     user_question = st.text_input("Ask a question about your documents:")
 
     if (user_question): # if the user inputs a question
