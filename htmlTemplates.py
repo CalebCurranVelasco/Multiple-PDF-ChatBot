@@ -28,7 +28,7 @@ css = '''
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="Multiple-PDF-ChatBot/img/AI_face.png" alt="">
+        <img src="img/AI_face.png" alt="">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -37,7 +37,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="Multiple-PDF-ChatBot/img/smiley.png" alt="">
+        <img src="img/smiley.png" alt="">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
