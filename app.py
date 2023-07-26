@@ -68,6 +68,7 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv(find_dotenv())
+    openai_api_key = st.session_state.get("OPENAI_API_KEY")
 
     st.set_page_config(page_title="Multiple PDFs ChatBot", page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
