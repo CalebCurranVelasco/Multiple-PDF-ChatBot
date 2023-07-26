@@ -28,7 +28,7 @@ css = '''
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://i.ibb.co/CVW3K39/digital-particle-technology-face-artifiticial-intelligence-concept-1017-11831.jpg" alt="">
+        <a href="https://imgbb.com/"><img src="https://i.ibb.co/CVW3K39/digital-particle-technology-face-artifiticial-intelligence-concept-1017-11831.jpg" alt="digital-particle-technology-face-artifiticial-intelligence-concept-1017-11831" border="0"></a>
     </div>
     <div class="message">{{MSG}}</div>
 </div>
