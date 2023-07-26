@@ -35,7 +35,8 @@ def get_text_chunks(text):
     return chunks # returns list of chunks
 
 
-def get_vectorstore(text_chunks):
+def get_vectorstore(text_chunks, openai_api_key):
+    openai.api_key = openai_api_key
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings) # creating database
     return vectorstore
@@ -119,7 +120,7 @@ def main():
                 raw_text = get_pdf_text(pdf_docs)
 
                 # get the text chunks
-                text_chunks = get_text_chunks(raw_text)
+                text_chunks = get_text_chunks(raw_text, st.session_state["OPENAI_API_KEY"])
 
                 # create vector store
                 vectorstore = get_vectorstore(text_chunks)
