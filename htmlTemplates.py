@@ -28,7 +28,7 @@ css = '''
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Fpremium-photo%2Fartificial-intelligence-humanoid-head-with-neural-network-thinks-futuristic-modern-3d-illustration_34824715.htm&psig=AOvVaw0c8ZSpmeCl29AG399bp79n&ust=1690420956728000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNiql_eaq4ADFQAAAAAdAAAAABAE" alt="">
+        <img src="Multiple-PDF-ChatBot\img\AI_face.png" alt="">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -37,7 +37,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="PDF-Chat\img\smiley.png" alt="">
+        <img src="Multiple-PDF-ChatBot\img\smiley.png" alt="">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
