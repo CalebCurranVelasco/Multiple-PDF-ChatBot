@@ -11,9 +11,8 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 # OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-openai_api_key = st.session_state.get("OPENAI_API_KEY")
 
 #gets the text from the pdfs
 def get_pdf_text(pdf_docs):
@@ -67,11 +66,12 @@ def handle_userinput(user_question):
 
 
 def main():
-    load_dotenv(find_dotenv())
-    openai_api_key = st.session_state.get("OPENAI_API_KEY")
+    # load_dotenv(find_dotenv())
+    
 
     st.set_page_config(page_title="Multiple PDFs ChatBot", page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
+    openai_api_key = st.session_state.get("OPENAI_API_KEY")
     
     if not openai_api_key:
         st.warning(
