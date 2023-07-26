@@ -37,7 +37,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <a href="https://imgbb.com/"><img src="https://i.ibb.co/xmQXJFG/dark-sculpture-woman-1122-1487.jpg" alt="dark-sculpture-woman-1122-1487" border="0"></a>
+        <a href="https://ibb.co/FnmFBLw"><img src="https://i.ibb.co/x3XNMtj/1000-F-217452019-c-Dxhxn2vh-Pbj-JX2wxl-Oh-Vl9-X3s-Yy2i5-U.jpg" alt="1000-F-217452019-c-Dxhxn2vh-Pbj-JX2wxl-Oh-Vl9-X3s-Yy2i5-U" border="0"></a>
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
