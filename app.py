@@ -120,10 +120,10 @@ def main():
                 raw_text = get_pdf_text(pdf_docs)
 
                 # get the text chunks
-                text_chunks = get_text_chunks(raw_text, st.session_state["OPENAI_API_KEY"])
+                text_chunks = get_text_chunks(raw_text)
 
                 # create vector store
-                vectorstore = get_vectorstore(text_chunks)
+                vectorstore = get_vectorstore(text_chunks, st.session_state["OPENAI_API_KEY"])
 
                 # create conversation chain
                 st.session_state.conversation = get_conversation_chain(vectorstore)  # add session state so that this variable is never reinitialized when user pushes button or something like that, streamlit does that sometimes
