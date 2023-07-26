@@ -11,8 +11,8 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 
-# load_dotenv(find_dotenv())
-# OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+load_dotenv(find_dotenv())
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 #gets the text from the pdfs
 def get_pdf_text(pdf_docs):
@@ -35,16 +35,14 @@ def get_text_chunks(text):
     return chunks # returns list of chunks
 
 
-def get_vectorstore(text_chunks, openai_api_key):
-    openai.api_key = openai_api_key
+def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings) # creating database
     return vectorstore
 
 
 #creates the converstaion chain with langchain
-def get_conversation_chain(vectorstore, openai_api_key):
-    openai.api_key = openai_api_key
+def get_conversation_chain(vectorstore):
     llm = ChatOpenAI()
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
@@ -68,7 +66,7 @@ def handle_userinput(user_question):
 
 
 def main():
-    # load_dotenv(find_dotenv())
+    load_dotenv(find_dotenv())
     
 
     st.set_page_config(page_title="Multiple PDFs ChatBot", page_icon=":books:")
@@ -98,17 +96,17 @@ def main():
     with st.sidebar:
         st.markdown(
             "## How to use\n"
-            "1. Enter your [OpenAI API key](https://platform.openai.com/account/api-keys) below🔑\n"  # noqa: E501
-            "2. Upload a pdf, docx, or txt file📄\n"
-            "3. Ask a question about the document💬\n"
+            "1. Upload as many pdf's as you like"  # noqa: E501
+            "2. Process the documents"
+            "3. Start talking to your pdf's!"
         )
-        api_key_input = st.text_input(
-            "OpenAI API Key",
-            type="password",
-            placeholder="Paste your OpenAI API key here (sk-...)",
-            help="You can get your API key from https://platform.openai.com/account/api-keys.",  # noqa: E501
-            value=st.session_state.get("OPENAI_API_KEY", ""),
-        )
+        # api_key_input = st.text_input(
+        #     "OpenAI API Key",
+        #     type="password",
+        #     placeholder="Paste your OpenAI API key here (sk-...)",
+        #     help="You can get your API key from https://platform.openai.com/account/api-keys.",  # noqa: E501
+        #     value=st.session_state.get("OPENAI_API_KEY", ""),
+        # )
 
         # st.session_state["OPENAI_API_KEY"] = api_key_input
 
@@ -124,10 +122,10 @@ def main():
                 text_chunks = get_text_chunks(raw_text)
 
                 # create vector store
-                vectorstore = get_vectorstore(text_chunks, st.session_state["OPENAI_API_KEY"])
+                vectorstore = get_vectorstore(text_chunks)
 
                 # create conversation chain
-                st.session_state.conversation = get_conversation_chain(vectorstore, st.session_state["OPENAI_API_KEY"])  # add session state so that this variable is never reinitialized when user pushes button or something like that, streamlit does that sometimes
+                st.session_state.conversation = get_conversation_chain(vectorstore)  # add session state so that this variable is never reinitialized when user pushes button or something like that, streamlit does that sometimes
                 
 
 
