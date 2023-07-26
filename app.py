@@ -96,8 +96,8 @@ def main():
     with st.sidebar:
         st.markdown(
             "## How to use\n"
-            "1. Upload as many pdf's as you like"  # noqa: E501
-            "2. Process the documents"
+            "1. Upload as many pdf's as you like\n"  # noqa: E501
+            "2. Process the documents\n"
             "3. Start talking to your pdf's!"
         )
         # api_key_input = st.text_input(
